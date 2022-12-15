@@ -1,0 +1,8 @@
+.nav{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding:15px;
+    border: 8px solid rgb(171, 3, 3);
+    background-color: rgb(76, 129, 111);
+}
