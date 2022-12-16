@@ -3,5 +3,6 @@
     width: 22%;
 }
 img{
-    width: 100%;
+    border: 8px solid rgb(39, 34, 34);
+    width: 90%;
 }
