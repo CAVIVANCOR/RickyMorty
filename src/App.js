@@ -1,19 +1,21 @@
 import styles from './App.module.css'
 import Cards from './components/Cards/Cards.jsx'
 import Nav from './components/Nav/Nav.jsx'
-import React, { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import About from './components/About/About'
 import Detail from './components/Detail/Detail'
-import Login from './components/Login/Login'
+import Form from './components/Form/Form'
 
 function App () {
-  const [acceso,setAcceso] = useState({
-    usuario:"sistemas.cavr@gmail.com",
-    password:"12345"
-  });
+  const [access, setAccess] = useState(false);
+  const username = "sistemas.cavr@gmail.com";
+  const password = "123456";
   const ruta = 'https://rickandmortyapi.com/api/character';
   const [characters,setCharacters]=useState([]);
+  let ubicacion = useLocation();
+  let navigate = useNavigate();
+  console.log('ubicacion',ubicacion);
   const onSearch = (id)=>{
     fetch(`${ruta}/${id}`)
     .then((res) => res.json())
@@ -34,29 +36,45 @@ function App () {
 // React.useEffect(()=>{},[]) // mount
 // React.useEffect(()=>{})//update
 // React.useEffect(()=>{return})//dismount
-  React.useEffect(()=>{
+  useEffect(()=>{
       fetch(ruta)
       .then((res) => res.json())
       .then(({results}) => {setCharacters(results)})
       .catch((error) => console.log(error));
   },[]);
 
+  useEffect(() => {
+    !access && navigate('/');
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [access]);
+
 const onClose = (id)=>{
   setCharacters((chars)=>chars.filter(e=>e.id !==id));
-}
+};
   function actualiza(){
     setActualizate(!actualizate)
   }
   function popChars(){
     characters.pop();
     actualiza();
+  };
+const login = (userData) =>{
+  if (userData.username===username && userData.password===password){
+    setAccess(true);
+    navigate('/home');
+  }else{
+    setAccess(false);
   }
-
+};
+const logout=()=>{
+  setAccess(false);
+  navigate('/');
+}
   return (
     <div className={styles.App} style={{ padding: '25px' }}>
-      <Nav onSearch={onSearch}/>
+      {ubicacion.pathname!=="/" ? <Nav onSearch={onSearch} logout={logout}/>:null}
       <Routes>
-        <Route path="/" element={<Login/>}></Route>
+        <Route path="/" element={<Form login={login}/>}></Route>
         <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}></Route>
         <Route path="/about" element={<About/>}></Route>
         <Route path="/detail/:id" element={<Detail/>}></Route>

@@ -8,6 +8,7 @@ export default function Nav(props){
             <div><Link to="/home">Home</Link></div>
             <div><Link to="/about">About</Link></div>
             <div><SearchBar onSearch={props.onSearch}/></div>
+            <div> <button onClick={props.logout}>Logout</button> </div>
         </div>
     );
 }
