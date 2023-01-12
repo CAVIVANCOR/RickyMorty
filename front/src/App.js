@@ -15,6 +15,7 @@ function App () {
   const username = "sistemas.cavr@gmail.com";
   const password = "123456";
   const ruta = 'http://localhost:3001/onsearch';
+
   const [characters,setCharacters]=useState([]);
 
 const dispatch = useDispatch();

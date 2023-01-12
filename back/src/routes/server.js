@@ -5,11 +5,11 @@ const PORT = 3001;
 const {getCharById} =require('../controllers/index');
 
 http.createServer((req,res)=>{
-    console.log('req.url', Date(),req.url);
+    console.log('req.url', req.url);
     const allUrl = req.url.split("/");
     const id=Number(allUrl.pop());
     const url=allUrl.join("/");
-   // console.log(allUrl,id,url);
+   console.log(allUrl,id,url);
 
     switch (url) {
         case "/onsearch":
