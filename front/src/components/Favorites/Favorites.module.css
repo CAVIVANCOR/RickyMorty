@@ -1,0 +1,25 @@
+.cards{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+    border: 8px solid rgb(194, 121, 121)
+}
+
+.card{
+    border: 8px solid rgb(194, 121, 121);
+    width: 22%;
+}
+img{
+    border: 8px solid rgb(39, 34, 34);
+    width: 90%;
+}
+
+.menu{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+}

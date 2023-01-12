@@ -1,0 +1,9 @@
+.nav{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+    border: 8px solid rgb(171, 3, 3);
+    background-color: rgb(76, 129, 111);
+}
