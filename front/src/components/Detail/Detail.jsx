@@ -9,7 +9,7 @@ export default function Detail() {
 
   useEffect(() => {
     console.log(id);
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`http://localhost:3001/onsearch/${id}`)
        .then((response) => response.json())
        .then((char) => {
           if (char.name) {
